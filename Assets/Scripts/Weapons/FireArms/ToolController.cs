@@ -14,31 +14,52 @@ public class ToolController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject toolQinstance = Instantiate(toolQ, transform.position, Quaternion.identity);
-        GameObject toolWinstance = Instantiate(toolW, transform.position, Quaternion.identity);
-        toolWinstance.SetActive(false);
-        GameObject toolEinstance = Instantiate(toolE, transform.position, Quaternion.identity);
+        //Deactivating instances before usage
+        toolQ = Instantiate(toolQ, transform.position, Quaternion.identity);
+        toolQ.SetActive(false);
+        toolW = Instantiate(toolW, transform.position, Quaternion.identity);
+        toolW.SetActive(false);
+        toolE = Instantiate(toolE, transform.position, Quaternion.identity);
+        toolE.SetActive(false);
+
+        takeOutTool('q');
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
+       
         if (Input.GetKeyDown("q"))
         {
-            ChangeWeapon(weaponQ)
+            takeOutTool('q');
         }
         if (Input.GetKeyDown("w"))
         {
-            ChangeWeapon()
+            takeOutTool('w');
         }
         if (Input.GetKeyDown("e"))
         {
-            ChangeWeapon()
-        }*/
+            takeOutTool('e');
+        }
     }
 
-    void ChangeWeapon(string weapon) { 
-        
+    void takeOutTool(char letter) {
+        if (letter == 'q')
+        {
+            toolQ.SetActive(true);
+            toolW.SetActive(false);
+            toolE.SetActive(false);
+        }
+        else if (letter == 'w')
+        {
+            toolQ.SetActive(false);
+            toolW.SetActive(true);
+            toolE.SetActive(false);
+        }
+        else if (letter == 'e') {
+            toolQ.SetActive(false);
+            toolW.SetActive(false);
+            toolE.SetActive(true);
+        }
     }
 }
