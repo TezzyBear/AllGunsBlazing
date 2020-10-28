@@ -16,10 +16,13 @@ public class ToolController : MonoBehaviour
     {
         //Deactivating instances before usage
         toolQ = Instantiate(toolQ, transform.position, Quaternion.identity);
+        toolQ.transform.parent = this.transform;
         toolQ.SetActive(false);
         toolW = Instantiate(toolW, transform.position, Quaternion.identity);
+        toolW.transform.parent = this.transform;
         toolW.SetActive(false);
         toolE = Instantiate(toolE, transform.position, Quaternion.identity);
+        toolE.transform.parent = this.transform;
         toolE.SetActive(false);
 
         takeOutTool('q');
