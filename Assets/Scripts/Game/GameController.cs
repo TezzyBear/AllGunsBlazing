@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    GameController instance;
+    public static GameController instance;
+    private List<GameObject> waveList;
+    private float elapsedTime;
+    [SerializeField]
+    private float towerHitPoints = 500;
+    private float killPoints = 0;
+
     private void Awake()
     {
         // if the singleton hasn't been initialized yet
