@@ -3,10 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< HEAD
   tags:
   - Enemy
+||||||| a53a0f6
+  tags: []
+=======
+  tags:
   - Tool
-
+>>>>>>> juandiego
   layers:
   - Default
   - TransparentFX

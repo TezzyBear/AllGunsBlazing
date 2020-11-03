@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Animation/Animations.meta
+guid: 94881940560649143a8610ada70310b3
+||||||| a53a0f6:Assets/Prefabs/Bullets.meta
+guid: b2ae9e845f0dc384c98ea1c740be7288
+=======
+guid: bf8913dc4a1161c46b13cc7c785c6d7a
+>>>>>>> juandiego:Assets/Prefabs/Bullets.meta
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/EnemySpawn.meta
+guid: b8f3825393f13994080df664967e31ae
+||||||| a53a0f6:Assets/Prefabs/Characters.meta
+guid: 04c4333a02a58aa4699999a02db4e133
+=======
+guid: 9c953941151819f4184803501c74e341
+>>>>>>> juandiego:Assets/Prefabs/Characters.meta
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
