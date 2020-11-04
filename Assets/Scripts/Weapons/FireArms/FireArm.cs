@@ -34,6 +34,7 @@ public class FireArm : MonoBehaviour
         if (canShoot)
         {
             canShoot = false;
+            bulletSpawnPosition = transform.position;
             Shoot();
         }
         else {

@@ -33,18 +33,22 @@ public class CharacterMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 position.y += speed * Time.deltaTime;
+                transform.Translate(Vector3.up * speed * Time.deltaTime);
             }
             if (Input.GetKey(KeyCode.DownArrow))
             {
                 position.y -= speed * Time.deltaTime;
+                transform.Translate(Vector3.down * speed * Time.deltaTime);
             }
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 position.x += speed * Time.deltaTime;
+                transform.Translate(Vector3.right * speed * Time.deltaTime);
             }
             if (Input.GetKey(KeyCode.LeftArrow))
             {
                 position.x -= speed * Time.deltaTime;
+                transform.Translate(Vector3.left * speed * Time.deltaTime);
             }
             transform.position = position;
         }

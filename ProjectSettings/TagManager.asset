@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Enemy
   - Tool
-
   layers:
   - Default
   - TransparentFX
@@ -44,9 +43,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Enemy
-    uniqueID: 2015208073
+  - name: Weapon
+    uniqueID: 2865868053
     locked: 0
   - name: Player
-    uniqueID: 543057785
+    uniqueID: 3987362951
+    locked: 0
+  - name: Bullet
+    uniqueID: 1505115137
+    locked: 0
+  - name: Enemy
+    uniqueID: 3755312611
     locked: 0
