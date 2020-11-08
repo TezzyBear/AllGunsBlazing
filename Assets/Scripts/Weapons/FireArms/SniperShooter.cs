@@ -14,6 +14,12 @@ public class SniperShooter : FireArm
         if (fireRate == 0.0f) fireRate = 2.0f;
     }
 
+    protected override void Update()
+    {
+        base.Update();
+        bulletSpawnPosition = new Vector3(bulletSpawnPosition.x + 0.5f, bulletSpawnPosition.y, bulletSpawnPosition.z);
+    }
+
     protected override void Spray()
     {
         GameObject bulletInstance = Instantiate(bulletObject, bulletSpawnPosition, Quaternion.identity);

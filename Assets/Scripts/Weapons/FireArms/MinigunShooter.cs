@@ -14,6 +14,11 @@ public class MinigunShooter : FireArm
         if (fireRate == 0.0f) fireRate = 0.3f;
     }
 
+    protected override void Update() {
+        base.Update();
+        bulletSpawnPosition = new Vector3(bulletSpawnPosition.x + 1.2f, bulletSpawnPosition.y, bulletSpawnPosition.z);
+    }
+
     protected override void Spray()
     {
         Vector3 topBulletSpawnPosition = bulletSpawnPosition + new Vector3(-0.2f, 0.2f, 0.0f);

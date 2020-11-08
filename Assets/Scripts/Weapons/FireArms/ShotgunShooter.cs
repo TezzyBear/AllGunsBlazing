@@ -13,7 +13,13 @@ public class ShotgunShooter : FireArm
         if (fireRange == 0.0f) fireRange = 3.0f;
         if (fireRate == 0.0f) fireRate = 1.5f;
     }
- 
+
+    protected override void Update()
+    {
+        base.Update();
+        bulletSpawnPosition = new Vector3(bulletSpawnPosition.x + 1.0f, bulletSpawnPosition.y, bulletSpawnPosition.z);
+    }
+
     protected override void Spray()
     {
         Vector3 topBulletSpawnPosition = bulletSpawnPosition + new Vector3(0.0f, 0.2f, 0.0f);
