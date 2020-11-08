@@ -52,7 +52,7 @@ MonoBehaviour:
     type: 3}
   deathBloodParticle: {fileID: 3248876962703599367, guid: 28ce5d71f6c048844903fc5880bba97a,
     type: 3}
-  damageRate: 0.05
+  damageRate: 2
 --- !u!1 &300258441664308582
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +123,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2015208073
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 740376926d2501849b97392b4f4e8fe9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

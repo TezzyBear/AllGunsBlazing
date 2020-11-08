@@ -119,7 +119,7 @@ public class EnemyController : MonoBehaviour
 
     private void Damage()
     {
-        currentHealth -= 1;
+        currentHealth -= 30;
 
         Instantiate(hitParticle, alive.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
         if(currentHealth <= 0.0f)
