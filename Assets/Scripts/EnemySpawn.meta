@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/EnemySpawn.meta
 guid: b8f3825393f13994080df664967e31ae
+=======
+guid: 2c566717955cf8845814905cc6fd86c6
+>>>>>>> renzo:Assets/Scripts/Bullets.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

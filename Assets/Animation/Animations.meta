@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Animation/Animations.meta
 guid: 94881940560649143a8610ada70310b3
+=======
+guid: db7c6eb022f573045860d1f6848bc654
+>>>>>>> renzo:Assets/Prefabs/Weapons.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

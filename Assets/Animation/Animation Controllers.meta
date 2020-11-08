@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Animation/Animation Controllers.meta
 guid: a77135e7e33faa6428df28d1819e7710
+=======
+guid: 9c953941151819f4184803501c74e341
+>>>>>>> renzo:Assets/Prefabs/Characters.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
