@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletType : MonoBehaviour
-{    public enum Type {
-        NONE,
+{   
+    public enum Type {
         PIERCING,
         BLEEDING,
         EXPLOSIVE,
@@ -13,16 +13,26 @@ public class BulletType : MonoBehaviour
         FREEZING
     }
 
+    
+    public int
+        damage;
+
+    private SpriteRenderer spriteRenderer;
+
     public Type type;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private Sprite[] sprites;
+    
+
+    private void Awake()
     {
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+    public void Create(int dmg, Type t)
+    {
+        type = t;
+        spriteRenderer.sprite = sprites[(int)t];
+        damage = dmg;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
