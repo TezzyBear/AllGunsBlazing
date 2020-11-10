@@ -15,7 +15,13 @@ public class ShieldBar : MonoBehaviour
         WOOD_ARMOR,
         STEEL_ARMOR,
         PYRO_ARMOR,
-        UNARMORED
+    }
+
+    private RectTransform rectTransform;
+
+    public void Awake()
+    {
+        rectTransform = GetComponent<RectTransform>();
     }
 
     public void SetMaxShield(int shield)
@@ -29,28 +35,30 @@ public class ShieldBar : MonoBehaviour
         slider.value = shield;
     }
 
-    public void SetColor(string shieldType)
+    public void SetColor(ArmorController.ArmorType armorType)
     {
-        switch (shieldType)
+        switch (armorType)
         {
-            case "ROCK_ARMOR":
+            case ArmorController.ArmorType.Rock:
                 fill.color = new Color(0.2196f, 0.1765f, 0.0627f, 1.0f);
                 break;
-            case "WOOD_ARMOR":
+            case ArmorController.ArmorType.Wood:
                 fill.color = new Color(0.6118f, 0.4471f, 0.0f, 1.0f);
                 break;
-            case "STEEL_ARMOR":
+            case ArmorController.ArmorType.Steel:
                 fill.color = new Color(0.5255f, 0.5255f, 0.5255f, 1.0f);
                 break;
-            case "PYRO_ARMOR":
+            case ArmorController.ArmorType.Fire:
                 fill.color = new Color(0.7608f, 0.21570f, 0.1451f, 1.0f);
-                break;
-            case "UNARMORED":
-                fill.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
                 break;
             default:
                 break;
         }
         
+    }
+
+    public void SetPosition(Vector3 pos)
+    {
+        rectTransform.transform.position = pos;
     }
 }

@@ -10,4 +10,9 @@ public class DamagePopUp : MonoBehaviour
         //Destroy(gameObject, 1.0f);
         transform.localPosition += new Vector3(0, 0.5f, 0);
     }
+
+    private void FinishAnim()
+    {
+        Destroy(gameObject);
+    }
 }

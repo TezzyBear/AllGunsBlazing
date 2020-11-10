@@ -31,14 +31,14 @@ public class EnemyHealthBarController : MonoBehaviour
         shieldBar.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         currentShield = maxShield;
         shieldBar.GetComponent<ShieldBar>().SetMaxShield(maxShield);
-        shieldBar.GetComponent<ShieldBar>().SetColor("ROCK_ARMOR");
+        shieldBar.GetComponent<ShieldBar>().SetColor(ArmorController.ArmorType.Rock);
         damage = 20;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        /*
         if(Input.GetKeyDown(KeyCode.Space))
         {
             GameObject damagePopped = Instantiate(damagePopUp, transform.position, Quaternion.identity) as GameObject;
@@ -53,6 +53,7 @@ public class EnemyHealthBarController : MonoBehaviour
             damagePopped.transform.GetChild(0).GetComponent<TextMesh>().text = damage.ToString();
             damagePopped.transform.GetChild(0).GetComponent<TextMesh>().color = Color.grey;
         }
+        */
 
     }
 

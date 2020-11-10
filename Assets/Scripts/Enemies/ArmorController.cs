@@ -20,7 +20,7 @@ public class ArmorController : MonoBehaviour
     private Sprite[] sprites;
     private ArmorType type;
     private EnemyController.Level level;
-    private int maxHealth,
+    public int maxHealth,
                 currentHealth;
     private SpriteRenderer spriteRenderer;
 

@@ -47,6 +47,9 @@ TagManager:
   - name: Enemy
     uniqueID: 3283405397
     locked: 0
+  - name: Damage
+    uniqueID: 2865119043
+    locked: 0
   - name: Armor
     uniqueID: 2268665267
     locked: 0

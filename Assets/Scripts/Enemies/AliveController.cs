@@ -36,31 +36,63 @@ public class AliveController : MonoBehaviour
     private EnemyController enemyController;
     private EnemyController.EnemyType type;
 
+    public GameObject healthBarPref;
+    public GameObject shieldBarPref;
+
+    private GameObject healthBar;
+    private GameObject shieldBar;
+    
+    public GameObject damagePopUp;
+    private GameObject canvas;
+
 
     void Awake()
     {
         enemyController = transform.parent.GetComponent<EnemyController>();
+        Debug.Log((int)(0.05f * 30));
+        
     }
 
-    public void Create(int health, int armorHealth,EnemyController.Level lvl,EnemyController.EnemyType et)
+
+    public void Create(int health, int armorHealth,EnemyController.Level lvl,EnemyController.EnemyType et, GameObject c)
     {
         maxHealth = health;
         currentHealth = maxHealth;
         type = et;
-        if(type != EnemyController.EnemyType.Unarmored)
+        canvas = c;
+        //HEALTH BAR
+        healthBar = Instantiate(healthBarPref, transform.position, Quaternion.identity);
+        healthBar.transform.parent = canvas.transform;
+        healthBar.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        healthBar.GetComponent<HealthBar>().SetMaxHealth(maxHealth);
+
+        //SHIELD
+        if (type != EnemyController.EnemyType.Unarmored)
         {
             armor = Instantiate(armorPref, transform.position, Quaternion.identity);
             armorController = armor.GetComponent<ArmorController>();
             armorController.Create(armorHealth, lvl, (ArmorController.ArmorType)((int)et));
+            //SHIELD BAR
+            shieldBar = Instantiate(shieldBarPref, transform.position + new Vector3(0.0f, -0.25f, 0.0f), Quaternion.identity);
+            shieldBar.transform.parent = canvas.transform;
+            shieldBar.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            shieldBar.GetComponent<ShieldBar>().SetMaxShield(armorController.maxHealth);
+            shieldBar.GetComponent<ShieldBar>().SetColor(armorController.getType());
         }
-        
+
+
     }
 
     public void Update()
     {
-        if(armor != null)
+        healthBar.GetComponent<HealthBar>().SetPosition(transform.position + new Vector3(0.0f, 1f, 0.0f));
+        healthBar.GetComponent<HealthBar>().SetHealth(currentHealth);
+
+        if (armor != null)
         {
             armorController.UpdatePos(transform.position);
+            shieldBar.GetComponent<ShieldBar>().SetPosition(transform.position + new Vector3(0.0f, 0.75f, 0.0f));
+            shieldBar.GetComponent<ShieldBar>().SetShield(armorController.currentHealth);
         }
         
     }
@@ -71,22 +103,51 @@ public class AliveController : MonoBehaviour
         {
             BulletType bulletScript = col.gameObject.GetComponent<BulletType>();
             int residualDamage = 0;
-            if(armor != null)
+            GameObject damagePopped;
+            if (armor != null)
             {
                 ArmorController.ArmorType armorType = armorController.getType();
                 int armorDamage = (int)(bulletScript.damage * BulletVsArmor[(int)armorType, (int)bulletScript.type]);
+                
+                damagePopped = Instantiate(damagePopUp, transform.position, Quaternion.identity);
+                damagePopped.transform.GetChild(0).GetComponent<TextMesh>().text = armorDamage.ToString();
+                damagePopped.transform.GetChild(0).GetComponent<TextMesh>().color = Color.grey;
+                
+                
+
                 residualDamage = armorController.Damage(armorDamage);
-                if(residualDamage >= 0)
+                shieldBar.GetComponent<ShieldBar>().SetShield(armorController.currentHealth);
+
+                if (residualDamage >= 0)
                 {
                     Destroy(armor);
+                    Destroy(shieldBar);
                     type = EnemyController.EnemyType.Unarmored;
+                    if (BulletVsArmor[(int)armorType, (int)bulletScript.type] == 0)
+                    {
+                        residualDamage = 0;
+                    }
+                    else
+                    {
+                        residualDamage = (int)(residualDamage / BulletVsArmor[(int)armorType, (int)bulletScript.type]);
+                    }
                 }
-                residualDamage = (int) (residualDamage / BulletVsArmor[(int)armorType, (int)bulletScript.type]);
+                else
+                {
+                    residualDamage = 0;
+                }
+                
+                
             }
 
             int lifeDamage = (int)((bulletScript.damage + residualDamage) * BulletVsLife[(int)type,(int)bulletScript.type]);
-
+            damagePopped = Instantiate(damagePopUp, transform.position, Quaternion.identity);
+            damagePopped.transform.GetChild(0).GetComponent<TextMesh>().text = lifeDamage.ToString();
+            damagePopped.transform.GetChild(0).GetComponent<TextMesh>().color = Color.red;
+            
             Damage(lifeDamage);
+            healthBar.GetComponent<HealthBar>().SetHealth(currentHealth);
+
             Destroy(col.gameObject);
         }
     }
@@ -100,6 +161,8 @@ public class AliveController : MonoBehaviour
         if (currentHealth <= 0)
         {
             Destroy(armor);
+            Destroy(shieldBar);
+            Destroy(healthBar);
             enemyController.SwitchState(EnemyController.State.Dead);
         }
     }

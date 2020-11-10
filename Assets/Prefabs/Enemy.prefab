@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 193331397}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2aa59453b5c1bd4f8cf53d500ef92af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 3
+  movementSpeed: 1
   deathChunkParticle: {fileID: 3222807824779349266, guid: 2ffb2b8e7d423e84dba8d34b785a439d,
     type: 3}
   deathBloodParticle: {fileID: 3248876962703599367, guid: 28ce5d71f6c048844903fc5880bba97a,
@@ -199,4 +199,10 @@ MonoBehaviour:
   hitParticle: {fileID: 3007598406645792467, guid: 4fc54dc845a8cae439665b91e9dae544,
     type: 3}
   armorPref: {fileID: 9185462123631726555, guid: b6d81413bea4e24439f327ac1e620477,
+    type: 3}
+  healthBarPref: {fileID: 6434606528471732449, guid: 6cc914edd1af08c4b847abae084aee45,
+    type: 3}
+  shieldBarPref: {fileID: 5210669154999644855, guid: 7f4342ffaa01c1046a75afc8265eaff6,
+    type: 3}
+  damagePopUp: {fileID: 8139553065217826054, guid: 30ae946f508b094439ccfbb6c664ca07,
     type: 3}

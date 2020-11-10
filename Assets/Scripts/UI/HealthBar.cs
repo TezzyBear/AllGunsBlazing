@@ -6,6 +6,12 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     public Slider slider;
+    private RectTransform rectTransform;
+
+    public void Awake()
+    {
+        rectTransform = GetComponent<RectTransform>();
+    }
 
     public void SetMaxHealth(int health)
     {
@@ -16,5 +22,11 @@ public class HealthBar : MonoBehaviour
     public void SetHealth(int health)
     {
         slider.value = health;
+    }
+
+    public void SetPosition(Vector3 pos)
+    {
+
+        rectTransform.transform.position = pos;
     }
 }

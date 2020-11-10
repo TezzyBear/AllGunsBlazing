@@ -100,4 +100,4 @@ MonoBehaviour:
   bulletObject: {fileID: 428270185943698745, guid: 3dab0a86118fce847a54734c548ae02a,
     type: 3}
   bulletDamage: 50
-  type: 1
+  type: 3

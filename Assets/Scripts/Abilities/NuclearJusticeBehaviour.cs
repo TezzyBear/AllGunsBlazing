@@ -14,7 +14,7 @@ public class NuclearJusticeBehaviour : MonoBehaviour
     {
         fadeAwayTimer = fadeAwayTime;
         initialAlpha = GetComponent<SpriteRenderer>().color.a;
-
+        DealGlobalDamage();
     }
 
     // Update is called once per frame
