@@ -7,21 +7,17 @@ public class ShotgunShooter : FireArm
     protected override void Awake()
     {
         base.Awake();
-        bulletSpawnPosition = new Vector3(bulletSpawnPosition.x + 1.0f, bulletSpawnPosition.y, bulletSpawnPosition.z);
 
         //Default shotgun values
         if (fireRange == 0.0f) fireRange = 3.0f;
         if (fireRate == 0.0f) fireRate = 1.5f;
     }
 
-    protected override void Update()
-    {
-        base.Update();
-        bulletSpawnPosition = new Vector3(bulletSpawnPosition.x + 1.0f, bulletSpawnPosition.y, bulletSpawnPosition.z);
-    }
-
     protected override void Spray()
     {
+        Vector3 shooterPos = this.transform.position;
+        bulletSpawnPosition = new Vector3(shooterPos.x + 1.0f, shooterPos.y, shooterPos.z);
+
         Vector3 topBulletSpawnPosition = bulletSpawnPosition + new Vector3(0.0f, 0.2f, 0.0f);
         GameObject TopBullet = Instantiate(bulletObject, topBulletSpawnPosition, Quaternion.identity);
         TopBullet.GetComponent<BulletMovement>().setTravelDistance(fireRange);

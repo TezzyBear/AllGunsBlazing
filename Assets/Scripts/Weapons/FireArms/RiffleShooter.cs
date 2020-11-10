@@ -7,7 +7,6 @@ public class RiffleShooter : FireArm
     protected override void Awake()
     {
         base.Awake();
-        bulletSpawnPosition = new Vector3(bulletSpawnPosition.x + 1.0f, bulletSpawnPosition.y + 0.15f, bulletSpawnPosition.z);
 
         //Default riffle values
         if (fireRange == 0.0f) fireRange = 8.0f;
@@ -16,6 +15,9 @@ public class RiffleShooter : FireArm
 
     protected override void Spray()
     {
+        Vector3 shooterPos = this.transform.position;
+        bulletSpawnPosition = new Vector3(shooterPos.x + 1.0f, shooterPos.y + 0.15f, shooterPos.z);
+
         Vector3 topBulletSpawnPosition = bulletSpawnPosition + new Vector3(-0.1f, 0.1f, 0.0f);
         GameObject TopBullet = Instantiate(bulletObject, topBulletSpawnPosition, Quaternion.identity);
         TopBullet.GetComponent<BulletMovement>().setTravelDistance(fireRange);
