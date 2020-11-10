@@ -9,7 +9,7 @@ public class EnemySpawnController : MonoBehaviour
     Vector2 whereToSpawn;
     public float spawnRate = 0.3f;
     float nextSpawn = 0.0f;
-
+    public EnemyController.Level lvl;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +24,8 @@ public class EnemySpawnController : MonoBehaviour
         {
             nextSpawn = Time.time + spawnRate;
             whereToSpawn = new Vector2(transform.position.x, transform.position.y);
-            Instantiate(enemy, whereToSpawn, Quaternion.identity);
+            GameObject newEnemy = Instantiate(enemy, whereToSpawn, Quaternion.identity);
+            newEnemy.SendMessage("Create", lvl);
         }
     }
 }

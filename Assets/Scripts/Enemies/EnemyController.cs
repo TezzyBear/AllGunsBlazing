@@ -6,10 +6,21 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+
+    private float[,] bcMetrics = { { -0.1602327f, -0.04214495f, 1.054409f, 0.6634768f},
+                                    { -0.06081128f, -0.245612f, 0.8000755f, 1.477345f},
+                                    { -0.3151496f, -0.3017359f, 1.122926f, 2.689894f} };
     public enum State
     {
         Walking,
         Dead
+    }
+
+    public enum Level
+    {
+        Small,
+        Medium,
+        Big
     }
 
     private State currentState;
@@ -30,21 +41,38 @@ public class EnemyController : MonoBehaviour
     private Vector2 movement;
 
     private GameObject alive;
+    [SerializeField]
+    private Sprite[] sprites;
+    private SpriteRenderer spriteRenderer;
+    private BoxCollider2D aliveBc;
     private Rigidbody2D aliveRb;
 
 
-
+    private Level level;
 
    
-
+    void Awake()
+    {
+        alive = transform.Find("Alive").gameObject;
+        spriteRenderer = alive.GetComponent<SpriteRenderer>();
+        aliveRb = alive.GetComponent<Rigidbody2D>();
+        aliveBc = alive.GetComponent<BoxCollider2D>();
+    }
     // Start is called before the first frame update
     void Start()
     {
-        alive = transform.Find("Alive").gameObject;
-        aliveRb = alive.GetComponent<Rigidbody2D>();
 
         facingDirection = -1;
         
+    }
+
+    public void Create(Level lvl)
+    {
+        level = lvl;
+        spriteRenderer.sprite = sprites[(int)level];
+        aliveBc.offset = new Vector2(bcMetrics[(int)level, 0], bcMetrics[(int)level, 1]);
+        aliveBc.size = new Vector2(bcMetrics[(int)level, 2], bcMetrics[(int)level, 3]);
+
     }
 
     
