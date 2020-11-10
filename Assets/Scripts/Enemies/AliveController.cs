@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 
@@ -11,8 +12,13 @@ public class AliveController : MonoBehaviour
                             { 0.4f,   0f,   0f,   0f, 0.1f, 0.05f},
                             { 0.1f, 0.2f,   0f, 0.3f,   0f,    0f},
                             {   1f,   2f, 1.5f, 1.4f, 1.7f,  1.1f}};
+    private float[,] BulletVsArmor =
+                          { { 0f,   0.1f, 0.5f,   1.0f, 0.1f,  0.5f},
+                            { 0f,   0.3f, 0.5f, 0.5f, 1.0f, 0.2f},
+                            { 0f,   0.05f,   0.5f,   0.2f, 0f, 0.05f},
+                            { 0f, 0f, 0f, 0f,   0f,    0.4f}};
 
-    [SerializeField]
+
     private int
         maxHealth;
 
@@ -23,11 +29,30 @@ public class AliveController : MonoBehaviour
     private GameObject
         hitParticle;
 
+    [SerializeField]
+    private GameObject armorPref;
+    private GameObject armor;
+    private ArmorController armorController;
     private EnemyController enemyController;
-    void Start()
+
+
+    void Awake()
     {
-        currentHealth = maxHealth;
         enemyController = transform.parent.GetComponent<EnemyController>();
+    }
+
+    public void Create(int health, int armorHealth,EnemyController.Level lvl,ArmorController.ArmorType at)
+    {
+        maxHealth = health;
+        currentHealth = maxHealth;
+        armor = Instantiate(armorPref, transform.position, Quaternion.identity);
+        armorController = armor.GetComponent<ArmorController>();
+        armorController.Create(armorHealth, lvl, at);
+    }
+
+    public void Update()
+    {
+        armorController.UpdatePos(transform.position);
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -35,11 +60,12 @@ public class AliveController : MonoBehaviour
         if (col.gameObject.tag.Equals("Bullet"))
         {
             BulletType bulletScript = col.gameObject.GetComponent<BulletType>();
-            int outDamage = (int)(bulletScript.damage * BulletVsLife[4,(int)bulletScript.type]);
-            Debug.Log(outDamage);
-            Debug.Log(BulletVsLife[4, (int)bulletScript.type]);
 
-            Damage(outDamage);
+            int lifeDamage = (int)(bulletScript.damage * BulletVsLife[(int)armorController.getType(),(int)bulletScript.type]);
+            
+            int armorDamage = (int)(bulletScript.damage * BulletVsArmor[(int)armorController.getType(), (int)bulletScript.type]);
+
+            Damage(lifeDamage);
             Destroy(col.gameObject);
         }
     }
@@ -52,7 +78,7 @@ public class AliveController : MonoBehaviour
         Instantiate(hitParticle, transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
         if (currentHealth <= 0)
         {
-            Debug.Log("Dead");
+            Destroy(armor);
             enemyController.SwitchState(EnemyController.State.Dead);
         }
     }

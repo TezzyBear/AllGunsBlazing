@@ -5,11 +5,31 @@ using UnityEngine;
 public class EnemySpawnController : MonoBehaviour
 {
 
+    public struct EnemyParams
+    {
+        public int health;
+        public int armorHealth;
+        public EnemyController.Level lvl;
+        public ArmorController.ArmorType armorType;
+
+        public EnemyParams(int h, int ah, EnemyController.Level l, ArmorController.ArmorType at)
+        {
+            this.health = h;
+            this.armorHealth = ah;
+            this.lvl = l;
+            this.armorType = at;
+        }
+    }
+
     public GameObject enemy;
     Vector2 whereToSpawn;
     public float spawnRate = 0.3f;
-    float nextSpawn = 0.0f;
+    private float nextSpawn = 0.0f;
+    public int enemiesHealth;
+    public int enemiesArmorHealth;
     public EnemyController.Level lvl;
+    public ArmorController.ArmorType enemiesArmorType;
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +45,7 @@ public class EnemySpawnController : MonoBehaviour
             nextSpawn = Time.time + spawnRate;
             whereToSpawn = new Vector2(transform.position.x, transform.position.y);
             GameObject newEnemy = Instantiate(enemy, whereToSpawn, Quaternion.identity);
-            newEnemy.SendMessage("Create", lvl);
+            newEnemy.SendMessage("Create", new EnemyParams(enemiesHealth, enemiesArmorHealth, lvl, enemiesArmorType));
         }
     }
 }
