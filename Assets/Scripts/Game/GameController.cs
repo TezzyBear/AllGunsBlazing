@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -17,10 +18,12 @@ public class GameController : MonoBehaviour
     private Color startColor;
     private float elapsedTime;
 
-    public float towerHitPoints = 500;
+    public int towerHitPoints = 500;
     private float killPoints = 0;
     [HideInInspector]
     public int abilityCoolDownObjsSpawned;
+
+    public GameObject panel;
 
     private void Awake()
     {
@@ -100,8 +103,8 @@ public class GameController : MonoBehaviour
         }
     }
 
-    void youLoose() { 
-    
+    public void youLoose() {
+        panel.SetActive(true);
     }
 
     void youWin() { 
