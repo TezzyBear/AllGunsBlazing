@@ -16,6 +16,8 @@ public class FireArm : MonoBehaviour
     protected GameObject bulletObject;
     protected Vector3 bulletSpawnPosition;
 
+    public BulletType.Type type;
+
     protected virtual void Awake()
     {
         bulletSpawnPosition = transform.position;
@@ -26,6 +28,11 @@ public class FireArm : MonoBehaviour
     protected virtual void Start()
     {
         fireRateCooldown = fireRate;
+    }
+
+    protected virtual void Create(BulletType.Type t)
+    {
+        type = t;
     }
 
     // Update is called once per frame
@@ -47,11 +54,14 @@ public class FireArm : MonoBehaviour
     }
 
     protected virtual void Shoot() { //Initialize sprayss at fire rate
+        bulletSpawnPosition = transform.position;
         Spray();
     }
 
     protected virtual void Spray() { //Spawns bullets in order
+
         GameObject bulletInstance = Instantiate(bulletObject, bulletSpawnPosition, Quaternion.identity);
         bulletInstance.GetComponent<BulletMovement>().setTravelDistance(fireRange);
+        bulletInstance.GetComponent<BulletType>().Create(20, type);
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    private enum State
+    public enum State
     {
         Walking,
         Dead
@@ -16,29 +16,22 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField]
     private float
-        movementSpeed,
-        maxHealth;
+        movementSpeed;
+    
 
     [SerializeField]
     private GameObject
-        hitParticle,
         deathChunkParticle,
         deathBloodParticle;
 
-    private int facingDirection;
-    private float 
-        currentHealth;
+    private int
+        facingDirection;
 
     private Vector2 movement;
 
     private GameObject alive;
     private Rigidbody2D aliveRb;
 
-    // TEMP VARIABLES
-    [SerializeField]
-    private float damageRate;
-
-    private float damageTimer;
 
 
 
@@ -51,12 +44,10 @@ public class EnemyController : MonoBehaviour
         aliveRb = alive.GetComponent<Rigidbody2D>();
 
         facingDirection = -1;
-        currentHealth = maxHealth;
-
-
-        damageTimer = 0.0f;
-       
+        
     }
+
+    
 
     // Update is called once per frame
     void Update()
@@ -70,9 +61,10 @@ public class EnemyController : MonoBehaviour
                 UpdateDeadState();
                 break;
         }
-        
     }
 
+    
+    
     // WALKING ------------------------------
     private void EnterWalkingState()
     {
@@ -83,11 +75,7 @@ public class EnemyController : MonoBehaviour
     {
         movement.Set(movementSpeed * facingDirection, aliveRb.velocity.y);
         aliveRb.velocity = movement;
-        if(Time.time > damageTimer)
-        {
-            damageTimer = Time.time + damageRate;
-            Damage();
-        }
+        
     }
 
     private void ExitWalkingState()
@@ -117,18 +105,9 @@ public class EnemyController : MonoBehaviour
 
     // OTHER FUNCTIONS -------------------------------
 
-    private void Damage()
-    {
-        currentHealth -= 1;
+    
 
-        Instantiate(hitParticle, alive.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
-        if(currentHealth <= 0.0f)
-        {
-            SwitchState(State.Dead);
-        }
-    }
-
-    private void SwitchState(State state)
+    public void SwitchState(State state)
     {
         switch (currentState)
         {

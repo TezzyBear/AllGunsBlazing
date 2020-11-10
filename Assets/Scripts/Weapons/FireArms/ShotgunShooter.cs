@@ -25,12 +25,15 @@ public class ShotgunShooter : FireArm
         Vector3 topBulletSpawnPosition = bulletSpawnPosition + new Vector3(0.0f, 0.2f, 0.0f);
         GameObject TopBullet = Instantiate(bulletObject, topBulletSpawnPosition, Quaternion.identity);
         TopBullet.GetComponent<BulletMovement>().setTravelDistance(fireRange);
+        TopBullet.GetComponent<BulletType>().Create(20, type);
 
         GameObject MiddleBullet = Instantiate(bulletObject, bulletSpawnPosition, Quaternion.identity);
         MiddleBullet.GetComponent<BulletMovement>().setTravelDistance(fireRange);
+        MiddleBullet.GetComponent<BulletType>().Create(20, type);
 
         Vector3 bottomBulletSpawnPosition = bulletSpawnPosition + new Vector3(0.0f, -0.2f, 0.0f);
         GameObject BottomBullet = Instantiate(bulletObject, bottomBulletSpawnPosition, Quaternion.identity);
         BottomBullet.GetComponent<BulletMovement>().setTravelDistance(fireRange);
+        BottomBullet.GetComponent<BulletType>().Create(20, type);
     }
 }

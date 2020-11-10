@@ -45,14 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 3
-  maxHealth: 100
-  hitParticle: {fileID: 3007598406645792467, guid: 4fc54dc845a8cae439665b91e9dae544,
-    type: 3}
   deathChunkParticle: {fileID: 3222807824779349266, guid: 2ffb2b8e7d423e84dba8d34b785a439d,
     type: 3}
   deathBloodParticle: {fileID: 3248876962703599367, guid: 28ce5d71f6c048844903fc5880bba97a,
     type: 3}
-  damageRate: 0.05
 --- !u!1 &300258441664308582
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,7 +61,8 @@ GameObject:
   - component: {fileID: 300258441664308580}
   - component: {fileID: 300258441664308581}
   - component: {fileID: 300258441664308578}
-  m_Layer: 9
+  - component: {fileID: 5096883554101108773}
+  m_Layer: 8
   m_Name: Alive
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -149,7 +146,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.106040955, y: -0.03916216}
+  m_Offset: {x: -0.10310197, y: -0.036446095}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -160,7 +157,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6952934, y: 1.26053}
+  m_Size: {x: 0.68986106, y: 1.2333684}
   m_EdgeRadius: 0
 --- !u!50 &300258441664308578
 Rigidbody2D:
@@ -183,3 +180,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &5096883554101108773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300258441664308582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a0646a4e94921c4b95ebf6192f53cd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  hitParticle: {fileID: 3007598406645792467, guid: 4fc54dc845a8cae439665b91e9dae544,
+    type: 3}
