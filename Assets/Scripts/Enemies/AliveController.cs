@@ -44,7 +44,7 @@ public class AliveController : MonoBehaviour
         }
     }
 
-    private void Damage(int damage)
+    public void Damage(int damage)
     {
 
         currentHealth -= damage;

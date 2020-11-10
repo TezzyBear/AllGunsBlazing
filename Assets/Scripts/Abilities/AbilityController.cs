@@ -15,37 +15,72 @@ public class AbilityController : MonoBehaviour
 
     [SerializeField]
     private Ability ability = Ability.UNDEFINED;
+
     [SerializeField]
     private GameObject turretObject;
+    [SerializeField]
+    private GameObject nuclearJusticeObject;
+    [SerializeField]
+    private GameObject gigaLaserObject;
+
+    [HideInInspector]
+    public Sprite abilityImage;
+
+    public float abilityCooldown;
+    public float abilityCooldownTimer;
 
     void Start()
     {
-        
+        switch (ability)
+        {
+ 
+            case Ability.NUCLEAR_JUSTICE:
+                abilityCooldown = 15.0f;
+                abilityImage = nuclearJusticeObject.GetComponent<SpriteRenderer>().sprite;
+                break;
+            case Ability.UNSTOPABLE_DUCKFENSE:
+                abilityCooldown = 20.0f;
+                abilityImage = turretObject.GetComponent<SpriteRenderer>().sprite;
+                break;                
+            case Ability.FIRE_AT_WILL:
+                abilityCooldown = 10.0f;
+                abilityImage = gigaLaserObject.GetComponent<SpriteRenderer>().sprite;
+                break;
+        }     
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("r"))
+        abilityCooldownTimer -= Time.deltaTime;
+        if (transform.parent.GetComponent<CharacterMovement>().isSelected && abilityCooldownTimer <= 0)
         {
-            castAbility(ability);
+            if (Input.GetKeyDown("r"))
+            {
+                castAbility(ability);
+            }
+        }
+        if (abilityCooldownTimer <= 0) {
+            abilityCooldownTimer = 0; 
         }
     }
 
     void castAbility(Ability ability) {
+        abilityCooldownTimer = abilityCooldown;
+
         switch (ability)
         {
             case Ability.UNDEFINED:
                 //Do nothing
                 break;
             case Ability.NUCLEAR_JUSTICE:
-                //Make a number of missiles arrive and explode dealing global damage to all units and damage over time
+                nuclearJustice();
                 break;
             case Ability.UNSTOPABLE_DUCKFENSE:
-                //Puts down a turret that deals damage for a duration
+                unstopableDuckfense();
                 break;
             case Ability.FIRE_AT_WILL:
-                //Gigantic laser beam in lane for massive amounts of damage and pushback to enemies
+                fireAtWill();
                 break;
             default:
                 break;
@@ -55,17 +90,18 @@ public class AbilityController : MonoBehaviour
     void nuclearJustice() {
         //animation
         //damage to all enemies on screen
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (var enemy in enemies) {
-            //enemy.GetComponent<EnemyController>().Damage(100);
-        }
+        Instantiate(nuclearJusticeObject);
     }
 
     void unstopableDuckfense() {
         Instantiate(turretObject, transform.position, Quaternion.identity);
     }
 
-    void fireAtWill() { 
+    void fireAtWill() {
+        Vector3 laserPosOffset = new Vector3(transform.position.x + 10.5f, transform.position.y, transform.position.y);
+        GameObject gigaLaserInstance = Instantiate(gigaLaserObject, laserPosOffset, Quaternion.Euler(new Vector3(0, 0, 90.0f)));
+        gigaLaserInstance.transform.localScale = new Vector3(5.0f, 20.0f, 1.0f);
+
         //make sprite long and less and less high as time pases (fade out effect)
         //raycast line
         //deal damage to all enemies in raycast

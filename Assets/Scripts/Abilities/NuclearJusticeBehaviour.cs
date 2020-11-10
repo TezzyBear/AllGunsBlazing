@@ -29,5 +29,13 @@ public class NuclearJusticeBehaviour : MonoBehaviour
 
         GetComponent<SpriteRenderer>().color = new Color(thisColor.r, thisColor.g, thisColor.b, initialAlpha * (fadeAwayTimer / fadeAwayTime));
     }
+
+    private void DealGlobalDamage() {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (var enemy in enemies)
+        {
+            enemy.GetComponent<AliveController>().Damage(100);
+        }
+    }
 }
 
