@@ -34,6 +34,7 @@ public class AliveController : MonoBehaviour
     private GameObject armor;
     private ArmorController armorController;
     private EnemyController enemyController;
+    private EnemyController.EnemyType type;
 
 
     void Awake()
@@ -41,18 +42,27 @@ public class AliveController : MonoBehaviour
         enemyController = transform.parent.GetComponent<EnemyController>();
     }
 
-    public void Create(int health, int armorHealth,EnemyController.Level lvl,ArmorController.ArmorType at)
+    public void Create(int health, int armorHealth,EnemyController.Level lvl,EnemyController.EnemyType et)
     {
         maxHealth = health;
         currentHealth = maxHealth;
-        armor = Instantiate(armorPref, transform.position, Quaternion.identity);
-        armorController = armor.GetComponent<ArmorController>();
-        armorController.Create(armorHealth, lvl, at);
+        type = et;
+        if(type != EnemyController.EnemyType.Unarmored)
+        {
+            armor = Instantiate(armorPref, transform.position, Quaternion.identity);
+            armorController = armor.GetComponent<ArmorController>();
+            armorController.Create(armorHealth, lvl, (ArmorController.ArmorType)((int)et));
+        }
+        
     }
 
     public void Update()
     {
-        armorController.UpdatePos(transform.position);
+        if(armor != null)
+        {
+            armorController.UpdatePos(transform.position);
+        }
+        
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -60,10 +70,21 @@ public class AliveController : MonoBehaviour
         if (col.gameObject.tag.Equals("Bullet"))
         {
             BulletType bulletScript = col.gameObject.GetComponent<BulletType>();
+            int residualDamage = 0;
+            if(armor != null)
+            {
+                ArmorController.ArmorType armorType = armorController.getType();
+                int armorDamage = (int)(bulletScript.damage * BulletVsArmor[(int)armorType, (int)bulletScript.type]);
+                residualDamage = armorController.Damage(armorDamage);
+                if(residualDamage >= 0)
+                {
+                    Destroy(armor);
+                    type = EnemyController.EnemyType.Unarmored;
+                }
+                residualDamage = (int) (residualDamage / BulletVsArmor[(int)armorType, (int)bulletScript.type]);
+            }
 
-            int lifeDamage = (int)(bulletScript.damage * BulletVsLife[(int)armorController.getType(),(int)bulletScript.type]);
-            
-            int armorDamage = (int)(bulletScript.damage * BulletVsArmor[(int)armorController.getType(), (int)bulletScript.type]);
+            int lifeDamage = (int)((bulletScript.damage + residualDamage) * BulletVsLife[(int)type,(int)bulletScript.type]);
 
             Damage(lifeDamage);
             Destroy(col.gameObject);

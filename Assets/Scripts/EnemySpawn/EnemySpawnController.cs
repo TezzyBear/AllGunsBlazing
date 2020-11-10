@@ -10,14 +10,14 @@ public class EnemySpawnController : MonoBehaviour
         public int health;
         public int armorHealth;
         public EnemyController.Level lvl;
-        public ArmorController.ArmorType armorType;
+        public EnemyController.EnemyType enemyType;
 
-        public EnemyParams(int h, int ah, EnemyController.Level l, ArmorController.ArmorType at)
+        public EnemyParams(int h, int ah, EnemyController.Level l, EnemyController.EnemyType at)
         {
             this.health = h;
             this.armorHealth = ah;
             this.lvl = l;
-            this.armorType = at;
+            this.enemyType = at;
         }
     }
 
@@ -28,7 +28,7 @@ public class EnemySpawnController : MonoBehaviour
     public int enemiesHealth;
     public int enemiesArmorHealth;
     public EnemyController.Level lvl;
-    public ArmorController.ArmorType enemiesArmorType;
+    public EnemyController.EnemyType enemiesType;
 
 
     // Start is called before the first frame update
@@ -45,7 +45,7 @@ public class EnemySpawnController : MonoBehaviour
             nextSpawn = Time.time + spawnRate;
             whereToSpawn = new Vector2(transform.position.x, transform.position.y);
             GameObject newEnemy = Instantiate(enemy, whereToSpawn, Quaternion.identity);
-            newEnemy.SendMessage("Create", new EnemyParams(enemiesHealth, enemiesArmorHealth, lvl, enemiesArmorType));
+            newEnemy.SendMessage("Create", new EnemyParams(enemiesHealth, enemiesArmorHealth, lvl, enemiesType));
         }
     }
 }

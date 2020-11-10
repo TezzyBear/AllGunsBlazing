@@ -41,12 +41,7 @@ public class ArmorController : MonoBehaviour
     public int Damage(int damage)
     {
         currentHealth -= damage;
-        if (currentHealth <= 0)
-        {
-            Destroy(gameObject);
-            return -currentHealth;
-        }
-        return 0;
+        return -currentHealth;
     }
     public void UpdatePos(Vector3 pos)
     {
