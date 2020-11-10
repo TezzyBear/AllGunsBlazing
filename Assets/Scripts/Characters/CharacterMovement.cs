@@ -11,6 +11,7 @@ public class CharacterMovement : MonoBehaviour
     private Vector3 position;
     public bool isSelected;
     private Color startColor;
+    
 
     void Awake()
     {
