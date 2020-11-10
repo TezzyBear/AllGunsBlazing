@@ -15,8 +15,9 @@ public class RiffleShooter : FireArm
 
     protected override void Spray()
     {
-        Vector3 shooterPos = this.transform.position;
-        bulletSpawnPosition = new Vector3(shooterPos.x + 1.0f, shooterPos.y + 0.15f, shooterPos.z);
+        
+        bulletSpawnPosition += new Vector3(1.0f, 0.15f, 0.0f);
+
 
         Vector3 topBulletSpawnPosition = bulletSpawnPosition + new Vector3(-0.1f, 0.1f, 0.0f);
         GameObject TopBullet = Instantiate(bulletObject, topBulletSpawnPosition, Quaternion.identity);

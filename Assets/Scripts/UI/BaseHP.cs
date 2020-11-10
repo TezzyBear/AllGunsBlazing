@@ -18,7 +18,6 @@ public class BaseHP : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(originalSize.x);
         if(originalSize.x < 1)
         {
             if (Input.GetKeyDown(KeyCode.KeypadPlus))
