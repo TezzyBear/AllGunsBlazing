@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6558704446884328647}
   - component: {fileID: 3837977730797315377}
+  - component: {fileID: 9016317006388079587}
   m_Layer: 0
   m_Name: AbilityController
   m_TagString: Untagged
@@ -51,5 +52,27 @@ MonoBehaviour:
   gigaLaserObject: {fileID: 972653223192070240, guid: 99272b1a784bdee4187baf121c77820a,
     type: 3}
   abilityImage: {fileID: 0}
-  cooldownTimerObject: {fileID: 8169456970455867911, guid: 5988db674db95174c866c9c7da4cae7c,
+  abilityCooldown: 0
+  abilityCooldownTimer: 0
+--- !u!114 &9016317006388079587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6002153117604501507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e75b51e45410848a17070348b6664a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ability: 0
+  turretObject: {fileID: 1023566520540762017, guid: dd9723d6c16c0d24d8836ed31451aabc,
     type: 3}
+  nuclearJusticeObject: {fileID: 922465201350866235, guid: 7c6173ae262c17a4fae8e7e79394f806,
+    type: 3}
+  gigaLaserObject: {fileID: 972653223192070240, guid: 99272b1a784bdee4187baf121c77820a,
+    type: 3}
+  abilityImage: {fileID: 0}
+  abilityCooldown: 0
+  abilityCooldownTimer: 0

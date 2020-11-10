@@ -16,8 +16,8 @@ public class GameController : MonoBehaviour
     private int selectedCharacter;
     private Color startColor;
     private float elapsedTime;
-    [SerializeField]
-    private float towerHitPoints = 500;
+
+    public float towerHitPoints = 500;
     private float killPoints = 0;
     [HideInInspector]
     public int abilityCoolDownObjsSpawned;
@@ -39,6 +39,7 @@ public class GameController : MonoBehaviour
         for (int i = 0; i < numberOfCharacters; i++)
         {
             characterList[i] = Instantiate(characterList[i], transform.position, Quaternion.identity);
+            characterList[i].transform.position = new Vector3(characterList[i].transform.position.x -3.0f, characterList[i].transform.position.y+i*3.5f-3.5f, characterList[i].transform.position.z);
             //startColor[i] = characterList[i].GetComponent<Renderer>().material.color;
             coolDownTimerList[i].GetComponent<AbilityCooldownController>().bindedCharacter = characterList[i];
         }

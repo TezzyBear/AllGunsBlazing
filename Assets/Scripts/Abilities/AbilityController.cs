@@ -26,7 +26,9 @@ public class AbilityController : MonoBehaviour
     [HideInInspector]
     public Sprite abilityImage;
 
+    [HideInInspector]
     public float abilityCooldown;
+    [HideInInspector]
     public float abilityCooldownTimer;
 
     void Start()

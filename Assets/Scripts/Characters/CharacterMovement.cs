@@ -11,10 +11,14 @@ public class CharacterMovement : MonoBehaviour
     private Vector3 position;
     public bool isSelected;
     private Color startColor;
-    
+    private float maxXPos, maxYPos, minXPos, minYPos;
 
     void Awake()
     {
+        maxXPos = 0.0f;
+        maxYPos = 5.0f;
+        minXPos = -6.5f;
+        minYPos = -5.0f;
         isSelected = false;
     }
 
@@ -34,20 +38,37 @@ public class CharacterMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 position.y += speed * Time.deltaTime;
+                if (position.y > maxYPos)
+                {
+                    position.y = maxYPos;
+                }
             }
             if (Input.GetKey(KeyCode.DownArrow))
             {
                 position.y -= speed * Time.deltaTime;
+                if (position.y < minYPos)
+                {
+                    position.y = minYPos;
+                }
             }
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 position.x += speed * Time.deltaTime;
+                if (position.x > maxXPos)
+                {
+                    position.x = maxXPos;
+                }
             }
             if (Input.GetKey(KeyCode.LeftArrow))
             {
                 position.x -= speed * Time.deltaTime;
+                if (position.x < minXPos)
+                {
+                    position.x = minXPos;
+                }
             }
             transform.position = position;
+            
         }
         else
         {
