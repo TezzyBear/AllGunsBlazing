@@ -15,6 +15,8 @@ public class FireArm : MonoBehaviour
     [SerializeField]
     protected GameObject bulletObject;
     protected Vector3 bulletSpawnPosition;
+    [SerializeField]
+    protected int bulletDamage;
 
     public BulletType.Type type;
 
@@ -62,6 +64,6 @@ public class FireArm : MonoBehaviour
 
         GameObject bulletInstance = Instantiate(bulletObject, bulletSpawnPosition, Quaternion.identity);
         bulletInstance.GetComponent<BulletMovement>().setTravelDistance(fireRange);
-        bulletInstance.GetComponent<BulletType>().Create(20, type);
+        bulletInstance.GetComponent<BulletType>().Create(bulletDamage, type);
     }
 }

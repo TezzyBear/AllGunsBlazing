@@ -534,6 +534,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 6170017748396705899, guid: 523eecc9c21268046affcfbe28eb4b53,
+        type: 3}
+      propertyPath: lvl
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6170017748396705899, guid: 523eecc9c21268046affcfbe28eb4b53,
+        type: 3}
+      propertyPath: enemiesHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6170017748396705899, guid: 523eecc9c21268046affcfbe28eb4b53,
+        type: 3}
+      propertyPath: enemiesArmorHealth
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6170017748396705899, guid: 523eecc9c21268046affcfbe28eb4b53,
+        type: 3}
+      propertyPath: enemiesArmorType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6170017748396705901, guid: 523eecc9c21268046affcfbe28eb4b53,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -603,6 +623,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6170017748396705899, guid: 523eecc9c21268046affcfbe28eb4b53,
+        type: 3}
+      propertyPath: lvl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6170017748396705899, guid: 523eecc9c21268046affcfbe28eb4b53,
+        type: 3}
+      propertyPath: enemiesArmorType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6170017748396705899, guid: 523eecc9c21268046affcfbe28eb4b53,
+        type: 3}
+      propertyPath: spawnRate
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6170017748396705899, guid: 523eecc9c21268046affcfbe28eb4b53,
+        type: 3}
+      propertyPath: enemiesHealth
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 6170017748396705899, guid: 523eecc9c21268046affcfbe28eb4b53,
+        type: 3}
+      propertyPath: enemiesArmorHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6170017748396705901, guid: 523eecc9c21268046affcfbe28eb4b53,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -611,7 +656,7 @@ PrefabInstance:
     - target: {fileID: 6170017748396705901, guid: 523eecc9c21268046affcfbe28eb4b53,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.6237414
+      value: -3.41
       objectReference: {fileID: 0}
     - target: {fileID: 6170017748396705901, guid: 523eecc9c21268046affcfbe28eb4b53,
         type: 3}
@@ -671,6 +716,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemySpawner (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6170017748396705899, guid: 523eecc9c21268046affcfbe28eb4b53,
+        type: 3}
+      propertyPath: lvl
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6170017748396705899, guid: 523eecc9c21268046affcfbe28eb4b53,
+        type: 3}
+      propertyPath: enemiesHealth
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6170017748396705899, guid: 523eecc9c21268046affcfbe28eb4b53,
+        type: 3}
+      propertyPath: enemiesArmorHealth
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 6170017748396705899, guid: 523eecc9c21268046affcfbe28eb4b53,
+        type: 3}
+      propertyPath: spawnRate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6170017748396705899, guid: 523eecc9c21268046affcfbe28eb4b53,
+        type: 3}
+      propertyPath: enemiesArmorType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6170017748396705899, guid: 523eecc9c21268046affcfbe28eb4b53,
+        type: 3}
+      propertyPath: enemiesType
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6170017748396705901, guid: 523eecc9c21268046affcfbe28eb4b53,
         type: 3}

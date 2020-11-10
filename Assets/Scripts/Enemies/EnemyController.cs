@@ -22,6 +22,14 @@ public class EnemyController : MonoBehaviour
         Medium,
         Big
     }
+    public enum EnemyType
+    {
+        Rock,
+        Wood,
+        Steel,
+        Fire,
+        Unarmored
+    }
 
     private State currentState;
 
@@ -46,6 +54,7 @@ public class EnemyController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D aliveBc;
     private Rigidbody2D aliveRb;
+    private AliveController aliveC;
 
 
     private Level level;
@@ -57,6 +66,7 @@ public class EnemyController : MonoBehaviour
         spriteRenderer = alive.GetComponent<SpriteRenderer>();
         aliveRb = alive.GetComponent<Rigidbody2D>();
         aliveBc = alive.GetComponent<BoxCollider2D>();
+        aliveC = alive.GetComponent<AliveController>();
     }
     // Start is called before the first frame update
     void Start()
@@ -66,13 +76,13 @@ public class EnemyController : MonoBehaviour
         
     }
 
-    public void Create(Level lvl)
+    public void Create(EnemySpawnController.EnemyParams param)
     {
-        level = lvl;
+        level = param.lvl;
         spriteRenderer.sprite = sprites[(int)level];
         aliveBc.offset = new Vector2(bcMetrics[(int)level, 0], bcMetrics[(int)level, 1]);
         aliveBc.size = new Vector2(bcMetrics[(int)level, 2], bcMetrics[(int)level, 3]);
-
+        aliveC.Create(param.health, param.armorHealth, level, param.enemyType);
     }
 
     

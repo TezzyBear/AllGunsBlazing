@@ -20,6 +20,6 @@ public class SniperShooter : FireArm
         GameObject bulletInstance = Instantiate(bulletObject, bulletSpawnPosition, Quaternion.identity);
         bulletInstance.GetComponent<BulletMovement>().setTravelDistance(fireRange);
         bulletInstance.GetComponent<BulletMovement>().setSpeed(10.0f);
-        bulletInstance.GetComponent<BulletType>().Create(20, type);
+        bulletInstance.GetComponent<BulletType>().Create(bulletDamage, type);
     }   
 }
