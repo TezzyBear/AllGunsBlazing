@@ -24,6 +24,7 @@ public class GigaLaserBehaviour : MonoBehaviour
         else if (fadeAwayTimer <= fadeAwayTime / 3 * 2 && fadeAwayTimer >= fadeAwayTime / 3 * 1)
         {
             transform.localScale = new Vector3(3.0f, 20.0f, 0.0f);
+            GetComponent<Collider2D>().enabled = false;
         }
         else if (fadeAwayTimer <= fadeAwayTime / 3 * 1  && fadeAwayTimer >= 0)
         {
@@ -31,6 +32,12 @@ public class GigaLaserBehaviour : MonoBehaviour
         }
         else if (fadeAwayTimer <= fadeAwayTime) {
             Destroy(this.gameObject);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy") {
+            collision.gameObject.GetComponent<AliveController>().Damage(200);
         }
     }
 }

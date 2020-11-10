@@ -9,12 +9,18 @@ public class GameController : MonoBehaviour
     private List<GameObject> waveList;
     [SerializeField]
     private List<GameObject> characterList;
+    [HideInInspector]
+    public int numberOfCharacters;
+    [SerializeField]
+    private List<GameObject> coolDownTimerList;
     private int selectedCharacter;
     private Color startColor;
     private float elapsedTime;
     [SerializeField]
     private float towerHitPoints = 500;
     private float killPoints = 0;
+    [HideInInspector]
+    public int abilityCoolDownObjsSpawned;
 
     private void Awake()
     {
@@ -27,18 +33,19 @@ public class GameController : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(this.gameObject);
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        for(int i = 0; i < characterList.Count; i++)
+
+        abilityCoolDownObjsSpawned = 0;
+        numberOfCharacters = characterList.Count;
+        for (int i = 0; i < numberOfCharacters; i++)
         {
             characterList[i] = Instantiate(characterList[i], transform.position, Quaternion.identity);
             //startColor[i] = characterList[i].GetComponent<Renderer>().material.color;
+            coolDownTimerList[i].GetComponent<AbilityCooldownController>().bindedCharacter = characterList[i];
         }
         selectedCharacter = 0;
         selectCharacter(0);
     }
+    // Start is called before the first frame update
 
 
     // Update is called once per frame

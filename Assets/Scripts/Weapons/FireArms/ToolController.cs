@@ -31,19 +31,20 @@ public class ToolController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-        if (Input.GetKeyDown("q"))
-        {
-            takeOutTool('q');
-        }
-        if (Input.GetKeyDown("w"))
-        {
-            takeOutTool('w');
-        }
-        if (Input.GetKeyDown("e"))
-        {
-            takeOutTool('e');
-        }
+        if (transform.parent.GetComponent<CharacterMovement>().isSelected) {
+            if (Input.GetKeyDown("q"))
+            {
+                takeOutTool('q');
+            }
+            if (Input.GetKeyDown("w"))
+            {
+                takeOutTool('w');
+            }
+            if (Input.GetKeyDown("e"))
+            {
+                takeOutTool('e');
+            }
+        }        
     }
 
     void takeOutTool(char letter) {
