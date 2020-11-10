@@ -50,3 +50,6 @@ TagManager:
   - name: Armor
     uniqueID: 2268665267
     locked: 0
+  - name: UI
+    uniqueID: 2063139489
+    locked: 0
