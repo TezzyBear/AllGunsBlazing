@@ -17,7 +17,7 @@ public class CharacterMovement : MonoBehaviour
     {
         maxXPos = 0.0f;
         maxYPos = 5.0f;
-        minXPos = -6.5f;
+        minXPos = -6.0f;
         minYPos = -5.0f;
         isSelected = false;
     }
