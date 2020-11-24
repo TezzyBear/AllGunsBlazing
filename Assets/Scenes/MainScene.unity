@@ -554,7 +554,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -196, y: 249}
+  m_AnchoredPosition: {x: -203, y: 256}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &910961128
@@ -935,6 +935,8 @@ MonoBehaviour:
   baseHealth: {fileID: 7175364857342353148, guid: 99869d4c2d5f3b34d84b45aa83bef030,
     type: 3}
   canvas: {fileID: 1469339760}
+  hpPosX: 11
+  hpPosY: 0.6
 --- !u!212 &1143231159
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1293,7 +1295,7 @@ GameObject:
   - component: {fileID: 1803093448}
   - component: {fileID: 1803093447}
   m_Layer: 0
-  m_Name: snow_background
+  m_Name: background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1338,7 +1340,7 @@ SpriteRenderer:
   m_SortingLayerID: 441734949
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ba501735e3fa7854a9883f6ec07e4c60, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0bd25414ba8f3784cb2f70fb3ab2a8c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1357,8 +1359,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1803093446}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: 0.13, z: 0}
-  m_LocalScale: {x: 4.0094714, y: 4.0094714, z: 4.0094714}
+  m_LocalPosition: {x: -0.02, y: 0.03, z: 0}
+  m_LocalScale: {x: 3.7523038, y: 3.7523038, z: 3.7523038}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
