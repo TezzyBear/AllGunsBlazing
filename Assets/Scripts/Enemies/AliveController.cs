@@ -13,10 +13,10 @@ public class AliveController : MonoBehaviour
                             { 0.1f, 0.2f,   0f, 0.3f,   0f,    0f},
                             {   1f,   2f, 1.5f, 1.4f, 1.7f,  1.1f}};
     private float[,] BulletVsArmor =
-                          { { 0f,   0.1f, 0.5f,   1.0f, 0.1f,  0.5f},
-                            { 0f,   0.3f, 0.5f, 0.5f, 1.0f, 0.2f},
-                            { 0f,   0.05f,   0.5f,   0.2f, 0f, 0.05f},
-                            { 0f, 0f, 0f, 0f,   0f,    0.4f}};
+                          { { 0f,   0.1f,    0.5f,   1.0f, 0.1f,   0.5f},
+                            { 0f,   0.3f,    0.5f,   0.5f, 1.0f,   0.2f},
+                            { 0f,  0.05f,    0.5f,   0.2f,   0f,  0.05f},
+                            { 0f,     0f,      0f,     0f,   0f,   0.4f}};
 
 
     private int
@@ -35,6 +35,7 @@ public class AliveController : MonoBehaviour
     private ArmorController armorController;
     private EnemyController enemyController;
     private EnemyController.EnemyType type;
+    private bool destroyed;
 
     public GameObject healthBarPref;
     public GameObject shieldBarPref;
@@ -44,22 +45,23 @@ public class AliveController : MonoBehaviour
     
     public GameObject damagePopUp;
     private GameObject canvas;
+    private GameController gc;
 
 
     void Awake()
     {
         enemyController = transform.parent.GetComponent<EnemyController>();
-        Debug.Log((int)(0.05f * 30));
-        
+        destroyed = false;
     }
 
 
-    public void Create(int health, int armorHealth,EnemyController.Level lvl,EnemyController.EnemyType et, GameObject c)
+    public void Create(int health, int armorHealth,EnemyController.Level lvl,EnemyController.EnemyType et, GameObject c, GameController gc)
     {
-        maxHealth = health;
-        currentHealth = maxHealth;
-        type = et;
-        canvas = c;
+        this.maxHealth = health;
+        this.currentHealth = maxHealth;
+        this.type = et;
+        this.canvas = c;
+        this.gc = gc;
         //HEALTH BAR
         healthBar = Instantiate(healthBarPref, transform.position, Quaternion.identity);
         healthBar.transform.parent = canvas.transform;
@@ -160,10 +162,24 @@ public class AliveController : MonoBehaviour
         Instantiate(hitParticle, transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
         if (currentHealth <= 0)
         {
+            if (!destroyed)
+            {
+                FullDestroy();
+            }
+            
+        }
+    }
+    public void FullDestroy()
+    {
+        if (!destroyed)
+        {
+            destroyed = true;
             Destroy(armor);
             Destroy(shieldBar);
             Destroy(healthBar);
             enemyController.SwitchState(EnemyController.State.Dead);
+            gc.DestroyEnemy();
         }
+        
     }
 }
