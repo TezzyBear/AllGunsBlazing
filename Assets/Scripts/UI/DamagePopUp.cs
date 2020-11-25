@@ -13,6 +13,7 @@ public class DamagePopUp : MonoBehaviour
 
     private void FinishAnim()
     {
+        Destroy(transform.parent.gameObject);
         Destroy(gameObject);
     }
 }

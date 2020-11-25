@@ -65,7 +65,7 @@ public class AliveController : MonoBehaviour
         //HEALTH BAR
         healthBar = Instantiate(healthBarPref, transform.position, Quaternion.identity);
         healthBar.transform.parent = canvas.transform;
-        healthBar.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        healthBar.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
         healthBar.GetComponent<HealthBar>().SetMaxHealth(maxHealth);
 
         //SHIELD
@@ -77,7 +77,7 @@ public class AliveController : MonoBehaviour
             //SHIELD BAR
             shieldBar = Instantiate(shieldBarPref, transform.position + new Vector3(0.0f, -0.25f, 0.0f), Quaternion.identity);
             shieldBar.transform.parent = canvas.transform;
-            shieldBar.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            shieldBar.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
             shieldBar.GetComponent<ShieldBar>().SetMaxShield(armorController.maxHealth);
             shieldBar.GetComponent<ShieldBar>().SetColor(armorController.getType());
         }

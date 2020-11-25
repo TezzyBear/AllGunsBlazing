@@ -44,12 +44,13 @@ public class EnemySpawnController : MonoBehaviour
     private float[,] wavesInfo;
     private GameController.State currentState;
     private int currentWave;
+    private System.Random rnd;
 
     // Start is called before the first frame update
     void Start()
     {
         currentState = GameController.State.Wait;
-        
+        rnd = new System.Random();
     }
 
     public void Create(float[,] wavesInfo, GameObject c, GameController gc)
@@ -85,7 +86,8 @@ public class EnemySpawnController : MonoBehaviour
         if(Time.time > nextSpawn)
         {
             nextSpawn = Time.time + spawnRate;
-            whereToSpawn = new Vector2(transform.position.x, transform.position.y);
+            float offsetY = ((float) rnd.Next(-10, 10))/20f;
+            whereToSpawn = new Vector2(transform.position.x, transform.position.y + offsetY);
             GameObject newEnemy = Instantiate(enemy, whereToSpawn, Quaternion.identity);
             newEnemy.SendMessage("Create", new EnemyParams(enemiesHealth, enemiesArmorHealth,
                 lvl, enemiesType, canvas, ms, gc));
@@ -111,18 +113,7 @@ public class EnemySpawnController : MonoBehaviour
         enemiesType = (EnemyController.EnemyType) wavesInfo[currentWave, 1];
         enemiesQuantity = (int) wavesInfo[currentWave, 4];
         ms = wavesInfo[0, 5];
-        switch (lvl)
-        {
-            case EnemyController.Level.Small:
-                spawnRate = 0.3f;
-                break;
-            case EnemyController.Level.Medium:
-                spawnRate = 0.8f;
-                break;
-            case EnemyController.Level.Big:
-                spawnRate = 1.0f;
-                break;
-        }
+        spawnRate = wavesInfo[currentWave, 7];
         nextSpawn = Time.time + wavesInfo[currentWave, 6] + spawnRate;
         currentState = GameController.State.Wave;
     }

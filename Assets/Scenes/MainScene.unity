@@ -595,7 +595,7 @@ MonoBehaviour:
   spawnObject: {fileID: 6170017748396705896, guid: 523eecc9c21268046affcfbe28eb4b53,
     type: 3}
   towerHitPoints: 500
-  waitTime: 10
+  waitTime: 1
   abilityCoolDownObjsSpawned: 0
   panelWin: {fileID: 887135909}
   panelLoose: {fileID: 135149838}
