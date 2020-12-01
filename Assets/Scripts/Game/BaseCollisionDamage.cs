@@ -27,6 +27,7 @@ public class BaseCollisionDamage : MonoBehaviour
         if (collision.gameObject.tag == "Enemy") {
             GameController.instance.towerHitPoints -= 25;
             baseHealth.GetComponent<BaseHealthBar>().SetHealth(GameController.instance.towerHitPoints);
+            ScreenShakeController.instance.LittleShake();
             collision.gameObject.SendMessage("FullDestroy");      
             if(GameController.instance.towerHitPoints <= 0)
             {

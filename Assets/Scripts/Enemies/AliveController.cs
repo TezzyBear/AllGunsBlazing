@@ -112,6 +112,14 @@ public class AliveController : MonoBehaviour
                 int armorDamage = (int)(bulletScript.damage * BulletVsArmor[(int)armorType, (int)bulletScript.type]);
                 
                 damagePopped = Instantiate(damagePopUp, transform.position, Quaternion.identity);
+                if (bulletScript.damage > 0 & bulletScript.damage < 25)
+                {
+                    damagePopped.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                }
+                if (bulletScript.damage >= 25)
+                {
+                    damagePopped.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
+                }
                 damagePopped.transform.GetChild(0).GetComponent<TextMesh>().text = armorDamage.ToString();
                 damagePopped.transform.GetChild(0).GetComponent<TextMesh>().color = Color.grey;
                 
@@ -144,6 +152,15 @@ public class AliveController : MonoBehaviour
 
             int lifeDamage = (int)((bulletScript.damage + residualDamage) * BulletVsLife[(int)type,(int)bulletScript.type]);
             damagePopped = Instantiate(damagePopUp, transform.position, Quaternion.identity);
+            if(bulletScript.damage > 0 & bulletScript.damage < 25)
+            {
+                damagePopped.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            }
+            if(bulletScript.damage >= 25)
+            {
+                damagePopped.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
+            }
+            
             damagePopped.transform.GetChild(0).GetComponent<TextMesh>().text = lifeDamage.ToString();
             damagePopped.transform.GetChild(0).GetComponent<TextMesh>().color = Color.red;
             
