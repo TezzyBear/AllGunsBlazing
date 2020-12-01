@@ -33,8 +33,7 @@ public class EnemyController : MonoBehaviour
 
     private State currentState;
 
-    [SerializeField]
-    private float
+    public float
         movementSpeed;
     
 

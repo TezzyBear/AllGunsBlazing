@@ -47,7 +47,6 @@ public class AliveController : MonoBehaviour
     private GameObject canvas;
     private GameController gc;
 
-
     void Awake()
     {
         enemyController = transform.parent.GetComponent<EnemyController>();
@@ -103,6 +102,19 @@ public class AliveController : MonoBehaviour
     {
         if (col.gameObject.tag.Equals("Bullet"))
         {
+            //get bullet freezing type by component
+            if (col.gameObject.GetComponent<BulletType>().type == BulletType.Type.FREEZING) {
+                //add bullet effect controller
+                if (GetComponent<BulletFreeze>() == null) {
+                    BulletFreeze tmp = gameObject.AddComponent<BulletFreeze>() as BulletFreeze;
+                    tmp.SetEnemyGameObject(this.transform.parent.gameObject);
+                    tmp.SetInitialSpeed(this.transform.parent.GetComponent<EnemyController>().movementSpeed);
+                    tmp.Freeze();
+                }                
+            }
+            
+            
+
             BulletType bulletScript = col.gameObject.GetComponent<BulletType>();
             int residualDamage = 0;
             GameObject damagePopped;
