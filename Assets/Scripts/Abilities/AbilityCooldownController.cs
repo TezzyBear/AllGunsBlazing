@@ -17,8 +17,7 @@ public class AbilityCooldownController : MonoBehaviour
     void Start()
     {
         abilityController = bindedCharacter.transform.GetComponentInChildren<AbilityController>();
-        backgroundImage.sprite = abilityController.abilityImage;
-        
+        //backgroundImage.sprite = overlay.sprite; 
     }
 
     // Update is called once per frame

@@ -17,11 +17,14 @@ public class FireArm : MonoBehaviour
     protected Vector3 bulletSpawnPosition;
     [SerializeField]
     protected int bulletDamage;
+    [SerializeField]
+    protected float bulletSpeed;
 
     public BulletType.Type type;
 
     protected virtual void Awake()
     {
+        bulletSpeed = bulletSpeed == 0 ? 5.0f : bulletSpeed;
         bulletSpawnPosition = transform.position;
         canShoot = true;
     }
