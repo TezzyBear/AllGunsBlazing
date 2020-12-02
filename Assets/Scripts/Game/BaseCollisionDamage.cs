@@ -12,8 +12,10 @@ public class BaseCollisionDamage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        baseHealth = Instantiate(baseHealth, transform.position + new Vector3(hpPosX, hpPosY, 0.0f), Quaternion.identity);
-        baseHealth.transform.parent = canvas.transform;
+        
+        //baseHealth = Instantiate(baseHealth, transform.position + new Vector3(hpPosX, hpPosY, 0.0f), Quaternion.identity);
+        //baseHealth.transform.parent = canvas.transform;
+        //baseHealth.GetComponent<RectTransform>().SetAnchor(AnchorPresets.TopCenter);
         baseHealth.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         baseHealth.GetComponent<BaseHealthBar>().SetMaxHealth(GameController.instance.towerHitPoints);
     }
