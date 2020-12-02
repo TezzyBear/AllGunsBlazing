@@ -6,19 +6,24 @@ using UnityEngine;
 
 public class FireArm : MonoBehaviour
 {
+
     [SerializeField]
     protected float fireRate;
     private float fireRateCooldown;
     private bool canShoot;
     [SerializeField]
     protected float fireRange;
+    protected float startFireRange;
     [SerializeField]
     protected GameObject bulletObject;
     protected Vector3 bulletSpawnPosition;
     [SerializeField]
     protected int bulletDamage;
+    protected int startBulletDamage;
     [SerializeField]
     protected float bulletSpeed;
+    protected float startBulletSpeed;
+    protected WeatherController.WeatherData weatherData;
 
     public BulletType.Type type;
 
@@ -27,6 +32,10 @@ public class FireArm : MonoBehaviour
         bulletSpeed = bulletSpeed == 0 ? 5.0f : bulletSpeed;
         bulletSpawnPosition = transform.position;
         canShoot = true;
+        startBulletDamage = bulletDamage;
+        startFireRange = fireRange;
+        startBulletSpeed = bulletSpeed;
+        weatherData = new WeatherController.WeatherData(WeatherController.Weather.RAIN, 0);
     }
 
     // Start is called before the first frame update
@@ -58,6 +67,11 @@ public class FireArm : MonoBehaviour
         }
     }
 
+    public void setWeather(WeatherController.WeatherData wd)
+    {
+        weatherData = wd;
+    }
+
     protected virtual void Shoot() { //Initialize sprayss at fire rate
         bulletSpawnPosition = transform.position;
         Spray();
@@ -66,7 +80,7 @@ public class FireArm : MonoBehaviour
     protected virtual void Spray() { //Spawns bullets in order
 
         GameObject bulletInstance = Instantiate(bulletObject, bulletSpawnPosition, Quaternion.identity);
-        bulletInstance.GetComponent<BulletMovement>().setTravelDistance(fireRange);
-        bulletInstance.GetComponent<BulletType>().Create(bulletDamage, type);
+        bulletInstance.GetComponent<BulletMovement>().Create(type ,fireRange, bulletSpeed,weatherData);
+        bulletInstance.GetComponent<BulletType>().Create(bulletDamage, type, weatherData);
     }
 }

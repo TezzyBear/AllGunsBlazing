@@ -5354,6 +5354,7 @@ MonoBehaviour:
   panelWin: {fileID: 887135909}
   panelLoose: {fileID: 135149838}
   canvas: {fileID: 1469339760}
+  characterFrame: {fileID: 0}
 --- !u!4 &506575456
 Transform:
   m_ObjectHideFlags: 0

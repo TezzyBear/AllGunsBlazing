@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4478760202506194955}
   m_Layer: 0
   m_Name: 44 Long Range Magnum
-  m_TagString: Untagged
+  m_TagString: Tool
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,4 +100,5 @@ MonoBehaviour:
   bulletObject: {fileID: 428270185943698745, guid: 3dab0a86118fce847a54734c548ae02a,
     type: 3}
   bulletDamage: 50
+  bulletSpeed: 0
   type: 5

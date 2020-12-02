@@ -18,8 +18,7 @@ public class SniperShooter : FireArm
         bulletSpawnPosition = new Vector3(bulletSpawnPosition.x + 0.5f, bulletSpawnPosition.y, bulletSpawnPosition.z);
 
         GameObject bulletInstance = Instantiate(bulletObject, bulletSpawnPosition, Quaternion.identity);
-        bulletInstance.GetComponent<BulletMovement>().setTravelDistance(fireRange);
-        bulletInstance.GetComponent<BulletMovement>().setSpeed(bulletSpeed);
-        bulletInstance.GetComponent<BulletType>().Create(bulletDamage, type);
+        bulletInstance.GetComponent<BulletMovement>().Create(type, fireRange, bulletSpeed, weatherData);
+        bulletInstance.GetComponent<BulletType>().Create(bulletDamage, type, weatherData);
     }   
 }
