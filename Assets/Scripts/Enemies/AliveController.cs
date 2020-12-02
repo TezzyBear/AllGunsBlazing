@@ -112,8 +112,22 @@ public class AliveController : MonoBehaviour
                     tmp.Freeze();
                 }                
             }
-            
-            
+
+            //get bullet INCENDIARY type by component
+            if (col.gameObject.GetComponent<BulletType>().type == BulletType.Type.INCENDIARY)
+            {
+                //add bullet effect controller
+                if (GetComponent<BulletBurn>() == null)
+                {
+                    BulletBurn tmp = gameObject.AddComponent<BulletBurn>() as BulletBurn;
+                    tmp.SetEnemyGameObject(this.transform.parent.gameObject);
+                }
+                else {
+                    BulletBurn tmp = gameObject.GetComponent<BulletBurn>() as BulletBurn;
+                    tmp.RefreshBurn();
+                }
+            }
+
 
             BulletType bulletScript = col.gameObject.GetComponent<BulletType>();
             int residualDamage = 0;
