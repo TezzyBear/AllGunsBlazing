@@ -15,7 +15,7 @@ public class AliveController : MonoBehaviour
     private float[,] BulletVsArmor =
                           { { 0f,   0.1f,    0.5f,   1.0f, 0.1f,   0.5f},
                             { 0f,   0.3f,    0.5f,   0.5f, 1.0f,   0.2f},
-                            { 0f,  0.05f,    0.5f,   0.2f,   0f,  0.05f},
+                            { 0f,  0.05f,    1.0f,   0.2f,   0f,  0.05f},
                             { 0f,     0f,      0f,     0f,   0f,   0.4f}};
 
 
@@ -46,15 +46,17 @@ public class AliveController : MonoBehaviour
     public GameObject damagePopUp;
     private GameObject canvas;
     private GameController gc;
+    private WeatherController.Weather weather;
 
     void Awake()
     {
         enemyController = transform.parent.GetComponent<EnemyController>();
         destroyed = false;
+        weather = WeatherController.Weather.RAIN;
     }
 
 
-    public void Create(int health, int armorHealth,EnemyController.Level lvl,EnemyController.EnemyType et, GameObject c, GameController gc)
+    public void Create(int health, int armorHealth,EnemyController.Level lvl,EnemyController.EnemyType et, GameObject c, GameController gc, WeatherController.WeatherData wd)
     {
         this.maxHealth = health;
         this.currentHealth = maxHealth;
@@ -81,6 +83,7 @@ public class AliveController : MonoBehaviour
             shieldBar.GetComponent<ShieldBar>().SetColor(armorController.getType());
         }
 
+        setWeatherEffect(wd);
 
     }
 
@@ -93,9 +96,75 @@ public class AliveController : MonoBehaviour
         {
             armorController.UpdatePos(transform.position);
             shieldBar.GetComponent<ShieldBar>().SetPosition(transform.position + new Vector3(0.0f, 0.75f, 0.0f));
+            shieldBar.GetComponent<ShieldBar>().SetMaxShield(armorController.maxHealth);
             shieldBar.GetComponent<ShieldBar>().SetShield(armorController.currentHealth);
         }
         
+    }
+
+    void setWeatherEffect(WeatherController.WeatherData wd)
+    {
+
+        WeatherController.Weather w = wd.weather;
+        float wf = wd.windforce;
+        float factor = 1;
+        if (type != EnemyController.EnemyType.Unarmored)
+            armorController.affectArmor(1f);
+        switch (w)
+        {
+            case WeatherController.Weather.ELECTRIC_STORM:
+
+                switch (type)
+                {
+                    case EnemyController.EnemyType.Rock: break;
+                    case EnemyController.EnemyType.Wood: break;
+                    case EnemyController.EnemyType.Steel: armorController.affectArmor(0.3f); break;
+                    case EnemyController.EnemyType.Fire: break;
+                    case EnemyController.EnemyType.Unarmored: break;
+                }
+                break;
+            case WeatherController.Weather.DESERT:
+
+                switch (type)
+                {
+                    case EnemyController.EnemyType.Rock: break;
+                    case EnemyController.EnemyType.Wood: armorController.affectArmor(0.8f); break;
+                    case EnemyController.EnemyType.Steel: break;
+                    case EnemyController.EnemyType.Fire: armorController.affectArmor(1.5f); break;
+                    case EnemyController.EnemyType.Unarmored: break;
+                }
+                break;
+            case WeatherController.Weather.HEAVY_WIND:
+                switch (type)
+                {
+                    case EnemyController.EnemyType.Rock: break;
+                    case EnemyController.EnemyType.Wood: break;
+                    case EnemyController.EnemyType.Steel: break;
+                    case EnemyController.EnemyType.Fire: break;
+                    case EnemyController.EnemyType.Unarmored: break;
+                }
+                break;
+            case WeatherController.Weather.RAIN:
+                switch (type)
+                {
+                    case EnemyController.EnemyType.Rock: armorController.affectArmor(0.7f); break;
+                    case EnemyController.EnemyType.Wood:  armorController.affectArmor(1.5f); break;
+                    case EnemyController.EnemyType.Steel:  armorController.affectArmor(0.7f); break;
+                    case EnemyController.EnemyType.Fire:  armorController.affectArmor(0.2f); break;
+                    case EnemyController.EnemyType.Unarmored: break;
+                }
+                break;
+            case WeatherController.Weather.BLIZZARD:
+                switch (type)
+                {
+                    case EnemyController.EnemyType.Rock: factor = 0.5f; armorController.affectArmor(factor); break;
+                    case EnemyController.EnemyType.Wood: factor = 0.5f; armorController.affectArmor(factor); break;
+                    case EnemyController.EnemyType.Steel: factor = 0.9f; armorController.affectArmor(factor); break;
+                    case EnemyController.EnemyType.Fire: factor = 0.5f; armorController.affectArmor(factor); break;
+                    case EnemyController.EnemyType.Unarmored: break;
+                }
+                break;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)

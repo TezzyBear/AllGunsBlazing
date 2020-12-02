@@ -22,6 +22,7 @@ public class ArmorController : MonoBehaviour
     private EnemyController.Level level;
     public int maxHealth,
                 currentHealth;
+    private float currentFactor = 1;
     private SpriteRenderer spriteRenderer;
 
     public void Awake()
@@ -38,6 +39,7 @@ public class ArmorController : MonoBehaviour
         transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
         type = t;
         spriteRenderer.sprite = sprites[(int)level * 4 + (int)type];
+        currentFactor = 1;
     }
     public int Damage(int damage)
     {
@@ -47,6 +49,20 @@ public class ArmorController : MonoBehaviour
     public void UpdatePos(Vector3 pos)
     {
         transform.position = pos + new Vector3(offsets[(int)level, 0], offsets[(int)level, 1], offsets[(int)level, 2]);
+    }
+    public void affectArmor(float factor)
+    {
+        currentHealth = (int)Mathf.Round(currentHealth / currentFactor);
+        maxHealth = (int)Mathf.Round(maxHealth / currentFactor);
+
+        //Debug.Log("Current: " + currentHealth.ToString() + "\nMax    :"+maxHealth.ToString());
+        
+        currentHealth = (int)Mathf.Round(currentHealth * factor);
+        maxHealth = (int)Mathf.Round(maxHealth * factor);
+        
+        //Debug.Log("Current: " + currentHealth.ToString() + "\nMax    :" + maxHealth.ToString());
+
+        currentFactor = factor;
     }
     public ArmorType getType() { return type; }
 }

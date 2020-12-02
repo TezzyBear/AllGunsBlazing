@@ -140,8 +140,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 0.3
-  fireRange: 7
+  fireRange: 10
   bulletObject: {fileID: 428270185943698745, guid: 3dab0a86118fce847a54734c548ae02a,
     type: 3}
   bulletDamage: 10
-  type: 3
+  bulletSpeed: 15
+  type: 2

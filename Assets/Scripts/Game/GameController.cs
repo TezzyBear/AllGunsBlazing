@@ -15,13 +15,13 @@ public class GameController : MonoBehaviour
                                   {0, 1, 100,  50, 44, 0.8f,  0,   1f},
                                   {0, 0, 100, 100, 44, 0.7f, 10,   1f},
                                   {0, 2, 100, 200, 42, 0.8f,  0, 1.5f},
-                                  {0, 3,  50, 100, 48,   1f,  0,    1f}};
+                                  {0, 3,  50, 200, 48,   1f,  0,    1f}};
 
-    private float[,] waveInfo2 = {{2, 1, 200,  50, 60, 0.4f,  4, 1.8f},
-                                  {2, 0, 200, 100, 44, 0.3f,  0, 1.5f},
-                                  {2, 2, 120, 200, 44, 0.3f, 10, 1.5f},
-                                  {2, 3,  50, 100, 42, 0.8f,  0,   2f},
-                                  {2, 2, 120, 200, 48, 0.4f,  0,   2f}};
+    private float[,] waveInfo2 = {{2, 1, 200,  50, 60, 0.4f,  40, 1.8f},
+                                  {2, 0, 200, 100, 44, 0.3f,  40, 1.5f},
+                                  {2, 2, 120, 200, 44, 0.3f,  60, 1.5f},
+                                  {2, 3, 200, 100, 42, 0.8f,  50,   2f},
+                                  {2, 2, 1000, 1000, 10, 0.4f,  80, 10f}};
 
     private float[,] waveInfo3 = {{1, 1, 150,  50, 60, 0.6f, 10, 1.2f},
                                   {1, 0, 150, 100, 44, 0.5f,  5,   1f},
@@ -29,23 +29,23 @@ public class GameController : MonoBehaviour
                                   {1, 2,  80, 200, 42, 0.5f,  0, 1.2f},
                                   {1, 2, 100, 200, 48, 0.6f,  5, 1.5f}};
 
-    private float[,] waveInfo4 = {{0, 1, 100,  50, 60, 0.8f, 10, 1.6f},
-                                  {0, 0, 100, 100, 44, 0.7f,  5, 1.4f},
-                                  {0, 2,  80, 200, 44, 0.7f,  5, 1.4f},
-                                  {0, 3,  50, 100, 42,   1f,  0, 0.8f},
-                                  {0, 2,  80, 200, 48, 0.8f,  5,   1f}};
+    private float[,] waveInfo4 = {{0, 1, 100,  50, 60, 0.8f, 50, 1.6f},
+                                  {0, 0, 100, 100, 44, 0.7f, 50, 1.4f},
+                                  {0, 2,  80, 200, 44, 0.7f, 50, 1.4f},
+                                  {0, 3,  50, 100, 42,   1f, 50, 0.8f},
+                                  {0, 2,  80, 200, 48, 0.8f, 50,   1f}};
 
     private float[,] waveInfo5 = {{2, 1, 200,  50, 60, 0.4f,  0,   2f},
                                   {2, 0, 200, 100, 44, 0.3f,  5, 1.5f},
                                   {2, 2, 120, 200, 44, 0.3f,  0, 1.5f},
-                                  {2, 3,  50, 100, 42, 0.8f, 10, 1.5f},
-                                  {2, 2, 120, 200, 48, 0.4f,  0,   2f}};
+                                  {2, 3, 150, 100, 42, 0.8f, 10, 1.5f},
+                                  {2, 2, 1000, 1000, 10, 0.4f, 120, 10f}};
 
-    private float[,] waveInfo6 = {{1, 4, 150,   0, 60, 0.6f,  0, 1.4f},
-                                  {1, 1, 150,  50, 44, 0.6f,  5, 2.2f},
-                                  {1, 0, 150, 100, 44, 0.5f,  0, 2.2f},
+    private float[,] waveInfo6 = {{1, 4, 150,   0, 60, 0.6f, 50, 1.4f},
+                                  {1, 1, 150,  50, 44, 0.6f, 50, 2.2f},
+                                  {1, 0, 150, 100, 44, 0.5f, 50, 2.2f},
                                   {1, 2,  80, 200, 42, 0.6f, 10, 2.3f},
-                                  {1, 3,  50, 100, 48, 0.8f,  0,   1f}};
+                                  {1, 3,  50, 100, 48, 0.8f, 0,   1f}};
 
     private GameObject spawn1,
                        spawn2,
@@ -107,7 +107,7 @@ public class GameController : MonoBehaviour
         for (int i = 0; i < numberOfCharacters; i++)
         {
             characterList[i] = Instantiate(characterList[i], transform.position, Quaternion.identity);
-            characterList[i].transform.position = new Vector3(characterList[i].transform.position.x - 3.0f, characterList[i].transform.position.y + i * 3.5f - 3.5f, characterList[i].transform.position.z);
+            characterList[i].transform.position = new Vector3(characterList[i].transform.position.x - 3.0f, characterList[i].transform.position.y + i * -3.5f + 3.5f, characterList[i].transform.position.z);
             //startColor[i] = characterList[i].GetComponent<Renderer>().material.color;
             coolDownTimerList[i].GetComponent<AbilityCooldownController>().bindedCharacter = characterList[i];
         }

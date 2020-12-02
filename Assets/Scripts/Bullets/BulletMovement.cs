@@ -50,11 +50,23 @@ public class BulletMovement : MonoBehaviour
         WeatherController.Weather w = wd.weather;
         float wf = wd.windforce;
         travelDistance = startTravelDistance;
+        speed = startSpeed;
         switch (w)
         {
             case WeatherController.Weather.DESERT:
                 if (type != BulletType.Type.INCENDIARY)
                     travelDistance = (int)Mathf.Round(travelDistance * 0.6f);
+                break;
+            case WeatherController.Weather.HEAVY_WIND:
+                switch (type)
+                {
+                    case BulletType.Type.PIERCING: break;
+                    case BulletType.Type.BLEEDING: speed = (int)Mathf.Round(speed * (1 + (0.4f * wf))); break;
+                    case BulletType.Type.EXPLOSIVE: speed = (int)Mathf.Round(speed * (1 + (0.2f * wf))); break;
+                    case BulletType.Type.BLUNDERING: speed = (int)Mathf.Round(speed * (1 + (0.2f * wf))); break;
+                    case BulletType.Type.INCENDIARY: speed = (int)Mathf.Round(speed * (1 + (0.6f * wf))); break;
+                    case BulletType.Type.FREEZING: speed = (int)Mathf.Round(speed * (1 + (0.2f * wf))); break;
+                }
                 break;
             default: break;
         }

@@ -14,8 +14,9 @@ public class EnemySpawnController : MonoBehaviour
         public GameObject canvas;
         public float ms;
         public GameController gc;
+        public WeatherController.WeatherData wd;
 
-        public EnemyParams(int h, int ah, EnemyController.Level l, EnemyController.EnemyType at, GameObject c, float ms, GameController gc)
+        public EnemyParams(int h, int ah, EnemyController.Level l, EnemyController.EnemyType at, GameObject c, float ms, GameController gc, WeatherController.WeatherData wd)
         {
             this.health = h;
             this.armorHealth = ah;
@@ -24,6 +25,7 @@ public class EnemySpawnController : MonoBehaviour
             this.canvas = c;
             this.ms = ms;
             this.gc = gc;
+            this.wd = wd;
         }
     }
 
@@ -45,12 +47,14 @@ public class EnemySpawnController : MonoBehaviour
     private GameController.State currentState;
     private int currentWave;
     private System.Random rnd;
+    private WeatherController.WeatherData weatherData;
 
     // Start is called before the first frame update
     void Start()
     {
         currentState = GameController.State.Wait;
         rnd = new System.Random();
+        weatherData = new WeatherController.WeatherData(WeatherController.Weather.RAIN, 0);
     }
 
     public void Create(float[,] wavesInfo, GameObject c, GameController gc)
@@ -60,6 +64,7 @@ public class EnemySpawnController : MonoBehaviour
         this.canvas = c;
         this.currentWave = 0;
         this.currentState = GameController.State.Wait;
+        weatherData = new WeatherController.WeatherData(WeatherController.Weather.RAIN, 0);
     }
 
     // Update is called once per frame
@@ -90,7 +95,7 @@ public class EnemySpawnController : MonoBehaviour
             whereToSpawn = new Vector2(transform.position.x, transform.position.y + offsetY);
             GameObject newEnemy = Instantiate(enemy, whereToSpawn, Quaternion.identity);
             newEnemy.SendMessage("Create", new EnemyParams(enemiesHealth, enemiesArmorHealth,
-                lvl, enemiesType, canvas, ms, gc));
+                lvl, enemiesType, canvas, ms, gc, weatherData));
             enemiesQuantity--;
         }
         if(enemiesQuantity == 0)
@@ -116,6 +121,11 @@ public class EnemySpawnController : MonoBehaviour
         spawnRate = wavesInfo[currentWave, 7];
         nextSpawn = Time.time + wavesInfo[currentWave, 6] + spawnRate;
         currentState = GameController.State.Wave;
+    }
+
+    public void setWeather(WeatherController.WeatherData wd)
+    {
+        weatherData = wd;
     }
 
 }

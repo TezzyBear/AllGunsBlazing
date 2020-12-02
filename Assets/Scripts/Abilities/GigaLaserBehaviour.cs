@@ -37,7 +37,7 @@ public class GigaLaserBehaviour : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy") {
-            collision.gameObject.GetComponent<AliveController>().Damage(200);
+            collision.gameObject.GetComponent<AliveController>().Damage(150);
         }
     }
 }

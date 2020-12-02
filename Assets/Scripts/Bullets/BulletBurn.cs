@@ -42,7 +42,6 @@ public class BulletBurn : MonoBehaviour
 
     public void Burn()
     {
-        print("aca");
         enemyGameObject.transform.GetChild(0).gameObject.GetComponent<AliveController>().Damage(damage);
         enemyGameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = burnColor;
     }

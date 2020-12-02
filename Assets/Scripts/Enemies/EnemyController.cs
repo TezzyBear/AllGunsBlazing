@@ -82,7 +82,7 @@ public class EnemyController : MonoBehaviour
         spriteRenderer.sprite = sprites[(int)level];
         aliveBc.offset = new Vector2(bcMetrics[(int)level, 0], bcMetrics[(int)level, 1]);
         aliveBc.size = new Vector2(bcMetrics[(int)level, 2], bcMetrics[(int)level, 3]);
-        aliveC.Create(param.health, param.armorHealth, level, param.enemyType, param.canvas, param.gc);
+        aliveC.Create(param.health, param.armorHealth, level, param.enemyType, param.canvas, param.gc, param.wd);
     }
 
     
