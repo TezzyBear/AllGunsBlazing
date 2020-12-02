@@ -20,6 +20,7 @@ public class PistolShooter : FireArm
 
         GameObject bulletInstance = Instantiate(bulletObject, bulletSpawnPosition, Quaternion.identity);
         bulletInstance.GetComponent<BulletMovement>().setTravelDistance(fireRange);
+        bulletInstance.GetComponent<BulletMovement>().setSpeed(bulletSpeed);
         bulletInstance.GetComponent<BulletType>().Create(bulletDamage, type);
     }
 

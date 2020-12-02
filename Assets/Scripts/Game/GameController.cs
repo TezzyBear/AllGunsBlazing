@@ -88,6 +88,7 @@ public class GameController : MonoBehaviour
     public GameObject panelWin;
     public GameObject panelLoose;
     public GameObject canvas;
+    public GameObject characterFrame;
 
     private void Awake()
     {
@@ -241,10 +242,12 @@ public class GameController : MonoBehaviour
             if(position == i)
             {
                 characterList[i].GetComponent<CharacterMovement>().isSelected = true;
+                characterFrame.transform.GetChild(i).gameObject.SetActive(true);
             }
             else
             {
                 characterList[i].GetComponent<CharacterMovement>().isSelected = false;
+                characterFrame.transform.GetChild(i).gameObject.SetActive(false);
             }
             selectedCharacter = position;
         }

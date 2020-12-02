@@ -35,6 +35,7 @@ public class CharacterMovement : MonoBehaviour
         //transform.Translate(0, 0, translation);
         if(isSelected) {
             GetComponent<Renderer>().material.color = Color.cyan;
+            transform.GetChild(2).gameObject.SetActive(false);
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 position.y += speed * Time.deltaTime;
@@ -73,6 +74,7 @@ public class CharacterMovement : MonoBehaviour
         else
         {
             GetComponent<Renderer>().material.color = startColor;
+            transform.GetChild(2).gameObject.SetActive(true);
         }
     }
 }
