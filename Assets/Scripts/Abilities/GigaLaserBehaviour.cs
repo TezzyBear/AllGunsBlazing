@@ -11,6 +11,7 @@ public class GigaLaserBehaviour : MonoBehaviour
     void Start()
     {
         fadeAwayTimer = fadeAwayTime;
+        ScreenShakeController.instance.BigShake();
     }
 
     // Update is called once per frame

@@ -12,6 +12,7 @@ public class NuclearJusticeBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ScreenShakeController.instance.BigShake();
         fadeAwayTimer = fadeAwayTime;
         initialAlpha = GetComponent<SpriteRenderer>().color.a;
         DealGlobalDamage();
